@@ -1,0 +1,16 @@
+--------------------------------------------
+- mọi người lưu ý khi update lên thì lưu ý vào,
+- file này note mình cập nhật những gì
+- dưới đây là các câu lệnh cơ bản.
+--
+--
+--cập nhật: git pull
+muốn cập nhật từ máy lên github thì: 
+1. git add .
+2. git commit -m"Nội dung"
+3. git push
+
+------------------
+Đêm code về (dành chưa có )
+git clone https://github.com/LeKhanhDuy0601/DuAn_JavaWeb_KTD.git
+-----------------------------------------------------------------
