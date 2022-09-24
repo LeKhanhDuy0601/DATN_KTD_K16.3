@@ -1,0 +1,27 @@
+vison 1.1
+
+
+=> đây là dòng để cho thư mục chưa tải
+git clone https://github.com/LeKhanhDuy0601/DuAn_JavaWeb_KTD.git
+
+=> lệnh đem code khi đã code xong 
+B1: git add .
+B2: git commit -m"Noi dung"
+B3: git push
+
+LƯU Ý: Nếu mọi người khi dùng lệnh trên mà lổi khi push dử liệu lên 
+thì mọi người cần dùng lệnh " git pull " cho thư mục cập nhật lại, do mọi dử
+liệu trên github có updata mà project của mọi người chưa pull về.
+
+=> lệnh cập nhật project mõi khi muốn code git pull
+---------------------------------------------------------------------
+------------------------------------------------------------------------
+Lưu Ý: khi ai đã cập nhật lênh thì vào coi trên github có thay đổi nội dung
+không nha để tránh khi push thất bại mà cứ tưởng thành công check lại giúp mình
+Lưu Ý 2: khi có push hay xoá 1 mục nào trong project thì hãy nhắn trên nhóm hỏi 
+có ai dùng không, để tranh trường hợp xoá âm thầm, và MẤT ĐOÀN KẾT ĐẠI GIA ĐÌNH KTD NHÁ
+Lưu ý 3: khi cập nhật hay thêm mới và xoá nhớ ghi vào nhatkytanthu.txt gồm:
+USERNAME tân thủ, nội dung và ngày.
+
+Nhiêu thôi nào có gì úp tiếp 
+								duy 
