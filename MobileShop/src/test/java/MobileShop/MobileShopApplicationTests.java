@@ -1,10 +1,10 @@
-package com.poly;
+package MobileShop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class MobileShopApplicationTests {
 
 	@Test
 	void contextLoads() {
