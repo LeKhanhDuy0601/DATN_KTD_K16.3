@@ -17,8 +17,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "cities")
 public class City {
@@ -35,5 +33,18 @@ public class City {
 	@JsonIgnore
 	@OneToMany(mappedBy = "city")
 	List<District> districts ;
+
+	public City() {
+		super();
+	}
+
+	public City(Integer id, String code, String name, String type) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.name = name;
+		this.type = type;
+	}
+	
 	
 }

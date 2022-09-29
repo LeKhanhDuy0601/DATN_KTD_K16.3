@@ -1,0 +1,12 @@
+package MobileShop.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import MobileShop.Dao.CityDAO;
+
+@Service
+public class CityExcelService {
+	@Autowired
+	CityDAO cityDAO;
+}

@@ -1,0 +1,10 @@
+package MobileShop.Message;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ResponseMessage {
+	String messega;
+}
