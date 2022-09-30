@@ -1,0 +1,13 @@
+package MobileShop.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import MobileShop.Dao.DistrictDAO;
+import MobileShop.service.DistrictService;
+
+@Service
+public class DistrictServiceImpl implements DistrictService {
+	@Autowired
+	DistrictDAO districtDAO;
+}

@@ -1,0 +1,86 @@
+package MobileShop.Entity;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import MobileShop.Common.EGender;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@Table(name = "accounts")
+public class Account {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer id;
+	String username;
+	String fullname;
+	String password;
+	String phone;
+	String email;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
+	EGender gender;
+	String birthday;
+	String address;
+	String avatar;
+	Boolean deleted;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	List<Authority> authorities;
+	
+	@ManyToOne 
+	@JoinColumn(name = "city_id")
+	City city;
+	
+	@ManyToOne 
+	@JoinColumn(name = "district_id")
+	District district;
+	
+	@ManyToOne
+	@JoinColumn(name = "ward_id")
+	Ward ward;
+
+	public Account(String username, String fullname, String password, String phone, String email, EGender gender,
+			String birthday, String address, String avatar, Boolean deleted, List<Authority> authorities, City city,
+			District district, Ward ward) {
+		super();
+		this.username = username;
+		this.fullname = fullname;
+		this.password = password;
+		this.phone = phone;
+		this.email = email;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.address = address;
+		this.avatar = avatar;
+		this.deleted = deleted;
+		this.authorities = authorities;
+		this.city = city;
+		this.district = district;
+		this.ward = ward;
+	}
+
+	public Account() {
+		super();
+	}
+	
+	
+	
+}

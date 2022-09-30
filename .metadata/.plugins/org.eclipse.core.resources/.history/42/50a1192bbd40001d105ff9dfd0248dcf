@@ -1,0 +1,19 @@
+package MobileShop.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import MobileShop.Entity.City;
+import MobileShop.service.CityService;
+
+@Service
+public class CityServiceImpl implements CityService {
+
+	@Override
+	public List<City> getListCities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

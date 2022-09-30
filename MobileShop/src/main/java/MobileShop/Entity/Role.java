@@ -32,7 +32,7 @@ public class Role {
 	@Column(length = 20)
 	ERole code;
 	String name;
-	
+	Integer level;
 	@JsonIgnore
 	@OneToMany(mappedBy = "role")
 	List<Authority> authorities;

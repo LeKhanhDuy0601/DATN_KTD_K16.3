@@ -1,0 +1,13 @@
+package MobileShop.service;
+
+import javax.validation.Valid;
+
+import org.springframework.http.ResponseEntity;
+
+import MobileShop.Validation.AccountCreateValidation;
+
+public interface AccountService {
+
+	ResponseEntity<?> create(@Valid AccountCreateValidation accountCreateValidation);
+
+}

@@ -1,0 +1,13 @@
+package MobileShop.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import MobileShop.Dao.AccountDAO;
+import MobileShop.service.AccountService;
+
+@Service
+public class AccountServiceImpl implements AccountService {
+	@Autowired
+	AccountDAO accountDAO;
+}
