@@ -1,5 +1,7 @@
 package MobileShop.Entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +25,23 @@ public class Verification {
 	Integer id;
 	String password;
 	String code;
-	String Expiry;
-	Integer Type;
+	Date expiry;
+	Integer type;
 	boolean activity;
 
 	@ManyToOne
 	@JoinColumn(name = "account_id")
 	Account account;
+
+	public Verification(String password, String code, Date expiry, Integer type, boolean activity, Account account) {
+		super();
+		this.password = password;
+		this.code = code;
+		this.expiry = expiry;
+		this.type = type;
+		this.activity = activity;
+		this.account = account;
+	}
+	
+	
 }

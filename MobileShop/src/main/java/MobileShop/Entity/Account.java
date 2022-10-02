@@ -46,6 +46,8 @@ public class Account {
 	Boolean activity;
 	String address;
 	String avatar;
+	
+	Integer deleted_by;
 	Boolean deleted;
 
 	@JsonIgnore
@@ -92,6 +94,18 @@ public class Account {
 
 	public Account() {
 		super();
+	}
+
+	public Account(String username, String fullname, String password, String email, Boolean activity, Boolean deleted,
+			Set<Role> roles) {
+		super();
+		this.username = username;
+		this.fullname = fullname;
+		this.password = password;
+		this.email = email;
+		this.activity = activity;
+		this.deleted = deleted;
+		this.roles = roles;
 	}
 
 }
