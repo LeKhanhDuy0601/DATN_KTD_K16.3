@@ -18,18 +18,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "category_groups")
-public class Category_group {
+public class CategoryGroup {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long	id;
+Integer	id;
 String	code;
 String	name;
-Long	level;
+Integer	level;
 String	icon;
 Boolean	activity;
 Boolean	deleted;
-Long	deleted_by;
+Integer	deleted_by;
 
-@OneToMany(mappedBy = "group_id")
+@OneToMany(mappedBy = "categoryGroup")
 List<Category> categories;
+
+public CategoryGroup(String code, String name, Integer level, String icon, Boolean activity, Boolean deleted) {
+	super();
+	this.code = code;
+	this.name = name;
+	this.level = level;
+	this.icon = icon;
+	this.activity = activity;
+	this.deleted = deleted;
+}
+
+
+
 }

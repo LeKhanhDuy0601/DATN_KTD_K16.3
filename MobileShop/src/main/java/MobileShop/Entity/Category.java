@@ -20,17 +20,29 @@ import lombok.NoArgsConstructor;
 public class Category {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long	id;
+Integer	id;
 String	code;
 String	name;
 
 @ManyToOne
 @JoinColumn(name="group_id")
-Category_group	group_id;
+CategoryGroup	categoryGroup;
 
-Long	level;
+Integer	level;
 Boolean	view;
 Boolean	activity;
 Boolean	deleted;
-Long	deleted_by;
+Integer	deleted_by;
+public Category(String code, String name,Integer level, Boolean view, Boolean activity,Boolean deleted,
+		CategoryGroup categoryGroup) {
+	super();
+	this.code = code;
+	this.name = name;
+	this.level = level;
+	this.view = view;
+	this.activity = activity;
+	this.deleted = deleted;
+	this.categoryGroup = categoryGroup;
+}
+
 }

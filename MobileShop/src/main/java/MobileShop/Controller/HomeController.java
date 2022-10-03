@@ -22,4 +22,5 @@ public class HomeController {
 	public String forgot() {
 		return "authentications/forgot_password_page";
 	}
+	
 }
