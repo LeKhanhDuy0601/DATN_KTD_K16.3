@@ -1,7 +1,4 @@
-/**
- * 
- */
- app.controller("category-ctrl" , function($scope ,$http){
+app.controller("category-ctrl" , function($scope ,$http){
 	
 	$scope.form = {};
 	$scope.categories = [];

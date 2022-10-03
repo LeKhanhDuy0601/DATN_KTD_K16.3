@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +24,35 @@ import lombok.NoArgsConstructor;
 public class Brand {
 @Id	
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long id;
-Long cart_id;
-Long product_id;
-Long product_variant_id;
-Long qty;
-Long price;
-Long total;
+Integer id;
+String code;
 
-@OneToMany(mappedBy = "brand_id")
+String name;
+
+String short_description;
+
+String description;
+
+String avatar;
+
+Boolean activity;
+
+Boolean deleted;
+
+Integer deleted_by;
+@JsonIgnore
+@OneToMany(mappedBy = "brand")
 List<Product> products;
+
+public Brand(String code, String name, String short_description, String description, String avatar,
+		Boolean activity, Boolean deleted) {
+	super();
+	this.code = code;
+	this.name = name;
+	this.short_description = short_description;
+	this.description = description;
+	this.avatar = avatar;
+	this.activity = activity;
+	this.deleted = deleted;
+}
 }

@@ -18,4 +18,8 @@ public interface CategoryService {
 
 	ResponseEntity<?> updateCategory(@Valid CategoryUpdateValidation categoryUpdateValidation);
 
+	ResponseEntity<?> deleteCategory(@Valid CategoryUpdateValidation categoryUpdateValidation);
+
+	List<Category> search(String key_search);
+
 }

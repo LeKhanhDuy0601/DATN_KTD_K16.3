@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,18 +24,30 @@ import MobileShop.service.CategoryService;
 @RestController
 @RequestMapping("/rest/categories")
 public class CategoryRestController {
-@Autowired
-CategoryService categoryService;
-@GetMapping()
-public List<Category> findAllCategory(){
-	return categoryService.findAllCategory();
-}
-@PostMapping()
-public ResponseEntity<?> createCategory(@RequestBody @Valid CategoryCreateValidation categoryCreateValidation){
-	return categoryService.createCategory(categoryCreateValidation);
-}
-@PutMapping()
-public ResponseEntity<?> updateCategory(@RequestBody @Valid CategoryUpdateValidation categoryUpdateValidation){
-	return categoryService.updateCategory(categoryUpdateValidation);
-}
+	@Autowired
+	CategoryService categoryService;
+
+	@GetMapping()
+	public List<Category> findAllCategory() {
+		return categoryService.findAllCategory();
+	}
+
+	@PostMapping()
+	public ResponseEntity<?> createCategory(@RequestBody @Valid CategoryCreateValidation categoryCreateValidation) {
+		return categoryService.createCategory(categoryCreateValidation);
+	}
+
+	@PutMapping()
+	public ResponseEntity<?> updateCategory(@RequestBody @Valid CategoryUpdateValidation categoryUpdateValidation) {
+		return categoryService.updateCategory(categoryUpdateValidation);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<?> deleteCategory(@RequestBody @Valid CategoryUpdateValidation categoryUpdateValidation) {
+		return categoryService.deleteCategory(categoryUpdateValidation);
+	}
+	@GetMapping("/{key_search}")
+	public List<Category> search(@PathVariable("key_search") String key_search){
+		return categoryService.search(key_search);
+	}
 }

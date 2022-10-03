@@ -2,7 +2,7 @@
  * 
  */
 
-app = angular.module("admin-app", ["ngRoute"]);
+app = angular.module("admin-app", ['ngRoute','ng.ckeditor']);
 app.config(function($routeProvider) {
     $routeProvider
         .when("/accounts", {
@@ -19,6 +19,11 @@ app.config(function($routeProvider) {
 			 controller: "category-group-ctrl"
 	        
 	    })
+	    .when("/brands" ,{
+	        templateUrl :"/admin/layout/brand/brand_page.html",
+			 controller: "brand-ctrl"
+        
+    	})
         .otherwise({
             templateUrl: "/assets/admin/thongke/thongke.html",
             controller: "thongke-ctrl"

@@ -57,4 +57,24 @@ public ResponseEntity<?> updateCategory(@Valid CategoryUpdateValidation category
 	categoryDAO.save(category);
 	return ResponseEntity.ok(new ResponseMessage("Danh mục được cập nhật thành công!"));
 }
+
+@Override
+public ResponseEntity<?> deleteCategory(@Valid CategoryUpdateValidation categoryUpdateValidation) {
+	Category category = categoryDAO.findById(categoryUpdateValidation.getId()).get();
+	if(category == null || category.getDeleted() == true || category.getDeleted_by() != null) {
+		return ResponseEntity.badRequest().body(new ResponseMessageError("Danh mục không tồn tại.", "category"));
+	}
+	category.setDeleted(true);
+//	category.setDeleted_by(null);
+	categoryDAO.save(category);
+	return ResponseEntity.ok(new ResponseMessage("Danh mục được xóa thành công!"));
+}
+
+@Override
+public List<Category> search(String key_search) {
+	if(key_search.equals("null")) {
+		return categoryDAO.findAllCategory();
+	}
+	return categoryDAO.search(key_search);
+}
 }
