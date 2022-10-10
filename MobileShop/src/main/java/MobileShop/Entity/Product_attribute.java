@@ -19,15 +19,15 @@ import lombok.NoArgsConstructor;
 public class Product_attribute {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long id;
+Integer id;
 
 @ManyToOne
 @JoinColumn(name = "product_variant_id")
-Product_variant product_variant_id_1; 
+Product_variant product_variant; 
 
 @ManyToOne
 @JoinColumn(name = "attribute_id")
-Attribute attribute_id;
+Attribute attribute;
 
-Long level;
+Integer level;
 }

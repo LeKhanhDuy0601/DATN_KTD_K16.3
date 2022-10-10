@@ -9,6 +9,16 @@ app.config(function($routeProvider) {
             templateUrl: "/admin/layout/account/account_page.html",
             controller: "account-ctrl"
         })
+        .when("/attributes" ,{
+        templateUrl :"/admin/layout/attribute/attribute_page.html",
+		 controller: "attribute-ctrl"
+        
+    })
+        .when("/attribute_groups" ,{
+        templateUrl :"/admin/layout/attribute_group/attribute_group_page.html",
+		 controller: "attribute-group-ctrl"
+        
+    	})
         .when("/categories" ,{
 	        templateUrl :"/admin/layout/category/category_page.html",
 			 controller: "category-ctrl"

@@ -11,31 +11,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "attributes")
 public class Attribute {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long	id;
+Integer	id;
 
 @ManyToOne
 @JoinColumn(name = "attribute_group_id")
-Attribute_group	attribute_group_id;
+AttributeGroup	attribute_group;
 
 String	name;
 String	description;
 String	value;
 Boolean	activity;
 Boolean	deleted;
-Long	deleted_by;
+Integer	deleted_by;
 
-@OneToMany(mappedBy = "attribute_id")
-List<Product_attribute> product_attribute;
+@JsonIgnore
+@OneToMany(mappedBy = "attribute")
+List<Product_attribute> product_attributes;
+public Attribute() {
+	super();
+}
+
+public Attribute(String name, String description, String value, Boolean activity, Boolean deleted,
+		AttributeGroup attribute_group) {
+	super();
+	this.name = name;
+	this.description = description;
+	this.value = value;
+	this.activity = activity;
+	this.deleted = deleted;
+	this.attribute_group = attribute_group;
+}
+
+public Attribute(Integer id, String name, String value) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.value = value;
+}
 }

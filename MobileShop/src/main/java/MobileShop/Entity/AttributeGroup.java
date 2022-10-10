@@ -9,26 +9,40 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "attribute_groups")
-public class Attribute_group {
+public class AttributeGroup {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-Long	id;
+Integer	id;
 String	name;
-Long	level;
+Integer	level;
 String	description;
 Boolean	activity;
 Boolean	deleted;
-Long	deleted_by;
+Integer	deleted_by;
 
-@OneToMany(mappedBy = "attribute_group_id")
+@JsonIgnore
+@OneToMany(mappedBy = "attribute_group")
 List<Attribute> attributes;
+public AttributeGroup() {
+	super();
+}
+
+public AttributeGroup( String name,  Integer level,String description, Boolean activity, Boolean deleted) {
+	super();
+
+	this.name = name;
+	this.level = level;
+	this.description = description;
+	this.activity = activity;
+	this.deleted = deleted;
+}
 }
