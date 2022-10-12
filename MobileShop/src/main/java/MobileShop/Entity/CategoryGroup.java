@@ -31,6 +31,10 @@ String	icon;
 Boolean	activity;
 Boolean	deleted;
 Integer	deleted_by;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 99316262e912d8ca0714cfe4d2b4191ca2ef4495
 @JsonIgnore
 @OneToMany(mappedBy = "categoryGroup")
 List<Category> categories;

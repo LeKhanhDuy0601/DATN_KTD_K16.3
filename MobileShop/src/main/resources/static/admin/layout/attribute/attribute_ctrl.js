@@ -1,25 +1,34 @@
-app.controller("category-ctrl" , function($scope ,$http){
+/**
+ * 
+ */
+ app.controller("attribute-ctrl" , function($scope ,$http){
 	
 	$scope.form = {};
-	$scope.categories = [];
-	$scope.category_groups = [];
 	$scope.error = {};
+	$scope.attribute_groups = [];
+	$scope.attributes = [];
 	
 	$scope.initialize = function(){
-		
-		$http.get("/rest/categories").then(resp => {
-			$scope.categories = resp.data;
+		$http.get("/rest/attribute-groups").then(resp => {
+			$scope.attribute_groups = resp.data;
 		});
 		
-		$http.get("/rest/category-groups").then(resp => {
-			$scope.category_groups = resp.data;
+		$http.get("/rest/attributes").then(resp => {
+			$scope.attributes = resp.data;
+			$scope.attributes.forEach(account => {
+				if(account.attribute_group.type == 'TYPE_COLOR'){
+					account.style = {
+					"background-color" : account.value
+					}	
+				}
+			});
 		});
 	}
 	
 	$scope.create = function(){
-		var category = angular.copy($scope.form);
+		var attribute = angular.copy($scope.form);
 		$scope.error = {};
-		$http.post(`/rest/categories`, category).then(resp => {
+		$http.post(`/rest/attributes`, attribute).then(resp => {
 			$scope.reset();
 			Swal.fire({
 				position: 'center',
@@ -30,8 +39,8 @@ app.controller("category-ctrl" , function($scope ,$http){
 			})
 		}).catch(error => {
 			$scope.error = error.data;
-			if($scope.error.type == 'code'){
-				$scope.error.code = $scope.error.message;
+			if($scope.error.type == 'value'){
+				$scope.error.value = $scope.error.message;
 			}
 			Swal.fire({
 			  icon: 'error',
@@ -44,16 +53,16 @@ app.controller("category-ctrl" , function($scope ,$http){
 	
 	$scope.reset = function(){
 		$scope.form = {};
-		$scope.categories = [];
-		$scope.category_groups = [];
 		$scope.error = {};
+		$scope.attribute_groups = [];
+		$scope.attributes = [];
 		$scope.initialize();
 	}
 	
 	$scope.update = function(){
-		var category = angular.copy($scope.form);
+		var attribute = angular.copy($scope.form);
 		$scope.error = {};
-		$http.put(`/rest/categories`, category).then(resp => {
+		$http.put(`/rest/attributes`, attribute).then(resp => {
 			$scope.reset();
 			Swal.fire({
 				position: 'center',
@@ -64,6 +73,9 @@ app.controller("category-ctrl" , function($scope ,$http){
 			})
 		}).catch(error => {
 			$scope.error = error.data;
+			if($scope.error.type == 'value'){
+				$scope.error.value = $scope.error.message;
+			}
 			Swal.fire({
 			  icon: 'error',
 			  title: 'LỖI',
@@ -73,17 +85,17 @@ app.controller("category-ctrl" , function($scope ,$http){
 		})
 	}
 	
-	$scope.delete = function(category){
+	$scope.delete = function(attribute){
 		Swal.fire({  
 		  title: 'Bạn có chắc chắn xóa danh mục này?',  
 		  showCancelButton: true,
-		  cancelButtonText: `Hủy`, 
+		  cancelButtonText: `Hủy`,  
 		  confirmButtonText: `Xác nhận`,  
 		}).then((result) => {  
 			/* Read more about isConfirmed, isDenied below */  
 		    if (result.isConfirmed) {
 				$scope.error = {};
-				$http.put(`/rest/categories/${category.id}`, category).then(resp=>{
+				$http.put(`/rest/attributes/${attribute.id}`, attribute).then(resp=>{
 					$scope.reset();
 					Swal.fire({
 						position: 'center',
@@ -108,25 +120,24 @@ app.controller("category-ctrl" , function($scope ,$http){
 		});
 	}
 	
-	$scope.edit = function(category){
-		$scope.form = angular.copy(category);
+	$scope.edit = function(attribute){
+		$scope.form = angular.copy(attribute);
 	}
 	
-	$scope.search = function(key_search){
-		$http.get(`/rest/categories/${key_search}`).then(resp => {
-			$scope.categories = resp.data;
+	$scope.search = function(key_search){$http.get(`/rest/attributes/${key_search}`).then(resp => {
+			$scope.attributes = resp.data;
 		});
 	}
 	
 	$scope.pager ={
         page : 0,
         size : 10,
-        get categories(){
+        get attributes(){
             var start = this.page * this.size;
-         	return   $scope.categories.slice(start , start + this.size)
+         	return   $scope.attributes.slice(start , start + this.size)
         },
         get count(){
-            return Math.ceil(1.0 * $scope.categories.length / this.size)
+            return Math.ceil(1.0 * $scope.attributes.length / this.size)
         },
         first(){
            this.page = 0;

@@ -1,25 +1,19 @@
-app.controller("category-ctrl" , function($scope ,$http){
+app.controller("attribute-group-ctrl" , function($scope ,$http){
 	
 	$scope.form = {};
-	$scope.categories = [];
-	$scope.category_groups = [];
 	$scope.error = {};
+	$scope.attribute_groups = [];
 	
 	$scope.initialize = function(){
-		
-		$http.get("/rest/categories").then(resp => {
-			$scope.categories = resp.data;
-		});
-		
-		$http.get("/rest/category-groups").then(resp => {
-			$scope.category_groups = resp.data;
+		$http.get("/rest/attribute-groups").then(resp => {
+			$scope.attribute_groups = resp.data;
 		});
 	}
 	
 	$scope.create = function(){
-		var category = angular.copy($scope.form);
+		var attribute_group = angular.copy($scope.form);
 		$scope.error = {};
-		$http.post(`/rest/categories`, category).then(resp => {
+		$http.post(`/rest/attribute-groups`, attribute_group).then(resp => {
 			$scope.reset();
 			Swal.fire({
 				position: 'center',
@@ -44,16 +38,15 @@ app.controller("category-ctrl" , function($scope ,$http){
 	
 	$scope.reset = function(){
 		$scope.form = {};
-		$scope.categories = [];
-		$scope.category_groups = [];
 		$scope.error = {};
+		$scope.attribute_groups = [];
 		$scope.initialize();
 	}
 	
 	$scope.update = function(){
-		var category = angular.copy($scope.form);
+		var attribute_group = angular.copy($scope.form);
 		$scope.error = {};
-		$http.put(`/rest/categories`, category).then(resp => {
+		$http.put(`/rest/attribute-groups`, attribute_group).then(resp => {
 			$scope.reset();
 			Swal.fire({
 				position: 'center',
@@ -73,17 +66,17 @@ app.controller("category-ctrl" , function($scope ,$http){
 		})
 	}
 	
-	$scope.delete = function(category){
+	$scope.delete = function(attribute_group){
 		Swal.fire({  
 		  title: 'Bạn có chắc chắn xóa danh mục này?',  
 		  showCancelButton: true,
-		  cancelButtonText: `Hủy`, 
+		  cancelButtonText: `Hủy`,
 		  confirmButtonText: `Xác nhận`,  
 		}).then((result) => {  
 			/* Read more about isConfirmed, isDenied below */  
 		    if (result.isConfirmed) {
 				$scope.error = {};
-				$http.put(`/rest/categories/${category.id}`, category).then(resp=>{
+				$http.put(`/rest/attribute-groups/${attribute_group.id}`, attribute_group).then(resp=>{
 					$scope.reset();
 					Swal.fire({
 						position: 'center',
@@ -108,25 +101,24 @@ app.controller("category-ctrl" , function($scope ,$http){
 		});
 	}
 	
-	$scope.edit = function(category){
-		$scope.form = angular.copy(category);
+	$scope.edit = function(attribute_group){
+		$scope.form = angular.copy(attribute_group);
 	}
 	
 	$scope.search = function(key_search){
-		$http.get(`/rest/categories/${key_search}`).then(resp => {
-			$scope.categories = resp.data;
+		$http.get(`/rest/attribute-groups/${key_search}`).then(resp => {
+			$scope.attribute_groups = resp.data;
 		});
 	}
 	
 	$scope.pager ={
         page : 0,
         size : 10,
-        get categories(){
+        get attribute_groups(){
             var start = this.page * this.size;
-         	return   $scope.categories.slice(start , start + this.size)
+         	return   $scope.attribute_groups.slice(start , start + this.size)
         },
-        get count(){
-            return Math.ceil(1.0 * $scope.categories.length / this.size)
+        get count(){return Math.ceil(1.0 * $scope.attribute_groups.length / this.size)
         },
         first(){
            this.page = 0;

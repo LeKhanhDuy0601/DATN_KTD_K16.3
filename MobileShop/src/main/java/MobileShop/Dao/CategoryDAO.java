@@ -19,4 +19,7 @@ public interface CategoryDAO extends JpaRepository<Category, Integer>{
 
 
 	boolean existsByCode( String code);
+
+	@Query("SELECT ct FROM Category ct where ct.name LIKE %?1% AND ct.deleted = false AND ct.deleted_by IS NULL")
+	List<Category> search(String key_search);
 }

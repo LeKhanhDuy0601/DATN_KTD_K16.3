@@ -36,7 +36,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name="brand_id")
-	Brand brand_id;
+	Brand brand;
 	
 	@ManyToOne
 	@JoinColumn(name="unit_id")
