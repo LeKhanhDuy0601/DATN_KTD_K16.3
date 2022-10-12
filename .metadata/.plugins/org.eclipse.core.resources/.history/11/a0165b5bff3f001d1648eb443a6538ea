@@ -1,5 +1,0 @@
-package MobileShop.Message;
-
-public class ResponseMessage {
-	String messega;
-}

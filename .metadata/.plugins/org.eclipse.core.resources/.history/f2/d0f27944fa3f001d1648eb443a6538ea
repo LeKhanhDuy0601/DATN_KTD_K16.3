@@ -1,8 +1,0 @@
-package MobileShop.Controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class homeController {
-
-}
